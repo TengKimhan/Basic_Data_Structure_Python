@@ -22,6 +22,22 @@ class BinarySearchTreeNode:
             else:
                 self.right = BinarySearchTreeNode(data) # put node(data) in the right
 
+    # search value
+    def search(self, data):
+        if data == self.data:
+            return True
+
+        if data > self.data: # -> so this data should be in the right
+            if self.right:
+                self.right.search(data)
+            else:
+                return False
+
+        if data < self.data: # -> so this data should be in the left
+            if self.left:
+                self.left.search(data)
+            else:
+                return False
 
     def in_order_traversal(self):
         elements = []
@@ -46,3 +62,6 @@ if __name__ == "__main__":
     list = [15, 10, 20, 7, 12, 18, 21]
     bt = build_tree(list)
     print(bt.in_order_traversal())
+
+    print("Value 40:", bt.search(40))
+    print("Value 15:", bt.search(15))
